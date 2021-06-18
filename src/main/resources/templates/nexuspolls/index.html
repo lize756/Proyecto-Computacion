@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Encuestas de nexos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-md-10">
+				
+					<h2 class="my-5">Encuestas de nexos</h2>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre de la encuesta de nexo</th>
+								<th>Fecha de entrada de la encuesta de nexo</th>
+								<th>Fecha de salidad de la encuesta de nexo</th>
+								<th>Id de institucion de la encuesta de nexo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="nexus : ${nexuspolls}">
+								<td th:text="${nexus.nexpollId}"></td>
+								<td th:text="${nexus.nexpollName}"></td>
+								<td th:text="${nexus.nexpollStartdate}"></td>
+								<td th:text="${nexus.nexpollEnddate}"></td>
+								<td th:text="${nexus.instInstId}"></td>
+																								
+								<td><a th:href="@{/nexuspolls/edit/{id}(id=${nexus.nexpollId})}"
+									class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
+								<td><a th:href="@{/nexuspolls/del/{id}(id=${nexus.nexpollId})}"
+									class="btn btn-primary"><i class="fas fa-trash-alt"></i></a></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				
+				<p class="my-5">
+					<a href="/nexuspolls/add-nexuspoll" class="btn btn-primary"><i class="fas fa-address-book"></i></a>
+				</p>
+				
+				<div>
+					<form th:action="@{/nexuspolls/institution}" method="get">
+						<h2>Buscar encuestas de nexos por institucion: </h2>
+						<input type="text" th:name="instInstId" placeholder="Id institucion"/>
+						<button class="btn btn-primary" type="submit">Buscar</button>
+					</form>
+				</div>
+				
+				<!--<p class="my-5">
+                <a href="/frontapi/nexuspoll/consult-nexuspoll" class="btn btn-primary"><i class="fas fa-search ml-2"></i></a>
+				</p>-->
+			</div>
+		</div>
+		<p>
+			<a href="/"><i class="fas fa-home ml-2"></i> Go back to main</a>
+		</p>
+	</div>
+</body>
+</html>

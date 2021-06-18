@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Agregar preguntas de nexos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Completar Información</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:action="@{/nexusquestions/add-nexusquestion}" th:object="${nexus}"
+					method="post">
+					<div class="row">
+
+						
+						<div>
+							<input th:field="*{nexquesId}" type="hidden" id="id" placeholder="Id">
+						</div>
+												
+
+						<div class="form-group col-md-6">
+							<label for="nexquesName" class="col-form-label">Nombre de la pregunta de nexo</label> <input
+								type="text" th:field="*{nexquesName}" class="form-control" id="nexquesName"
+								placeholder="Nombre"> <span
+								th:if="${#fields.hasErrors('nexquesName')}" th:errors="*{nexquesName}"
+								class="text-danger"></span>
+						</div>
+						
+						<div class="form-group col-md-6">
+							<label for="nexquesWeight" class="col-form-label">Peso de la pregunta de nexoabel> <input
+								type="number" step = "any" th:field="*{nexquesWeight}" class="form-control" id="nexquesWeight"
+								placeholder="0"> <span
+								th:if="${#fields.hasErrors('nexquesWeight')}" th:errors="*{nexquesWeight}"
+								class="text-danger"></span>
+						</div>
+						
+						<div class="form-group col-md-6">
+                        <label for="nexuspoll" class="col-form-label">Encuesta de nexo</label> <select
+                            class="form-control-range" id="nexuspoll" th:field="*{nexuspoll}">
+                        <option th:each="nex : ${nexuspolls}" th:value="${nex.nexpollId}"
+                                class="form-control" th:text="${nex.nexpollName}"
+                                th:selected="${nexus.nexuspoll=nex}"></option>
+								
+						</select> <span th:if="${#fields.hasErrors('nexuspoll')}" th:errors="*{nexuspoll}"></span>
+                        </div>
+												 	 				
+						
+						
+						
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Add Preguntas">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancel">
+						</div>
+						<div class="col-md-3 mt-3">
+						<p>
+							<a href="/nexusquestions"><i class="fas fa-undo-alt"></i> Go back</a>
+						</p>
+					</div>	
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
